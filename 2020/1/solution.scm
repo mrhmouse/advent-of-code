@@ -1,0 +1,12 @@
+(import (scheme base)
+        (scheme write)
+        (scheme read)
+        (srfi 1))
+(let loop ((n (read)) (entries (list)))
+  (if (eof-object? n)
+      (display "[ERROR] no pair found")
+      (let ((match (find (lambda (m) (= 2020 (+ m n))) entries)))
+        (if match
+            (display (* match n))
+            (loop (read) (cons n entries))))))
+(newline)
